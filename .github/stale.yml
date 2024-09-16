@@ -1,0 +1,28 @@
+  name: Stale
+  on:
+    schedule:
+      - cron: '0 0 * * *'  # Run at midnight
+  jobs:
+    stale:
+      runs-on: ubuntu-latest
+      permissions:
+        issues: write
+        pull-requests: write
+      steps:
+        - uses: actions/stale@v9
+          with:
+            repo-token: ${{ github.token }}
+            stale-issue-message: >
+              This issue has been automatically marked as stale because it has not had recent activity.
+              If no action is taken, the issue will be closed in 14 days. To keep it open,
+              add a comment or update the issue.
+            stale-pr-message: >
+              This PR has been automatically marked as stale because it has not had recent activity.
+              If no action is taken, the PR will be closed in 14 days. To keep it open,
+              add a comment or update the PR.
+            days-before-stale: 180
+            days-before-close: 14
+            # Exempt issues/PR's with milestones set
+            exempt-all-milestones: true
+            # Exempt issues with these labels
+            exempt-issue-labels: bug, product_security_advisory, migration-v5.x
