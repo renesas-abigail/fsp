@@ -1,7 +1,9 @@
   name: Stale
+  
   on:
     schedule:
       - cron: '0 0 * * *'  # Run at midnight
+  
   jobs:
     stale:
       runs-on: ubuntu-latest
@@ -25,4 +27,4 @@
             # Exempt issues/PR's with milestones set
             exempt-all-milestones: true
             # Exempt issues with these labels
-            exempt-issue-labels: bug, product_security_advisory, migration-v5.x
+            exempt-issue-labels: 'bug,product_security_advisory,migration-v5.x'
